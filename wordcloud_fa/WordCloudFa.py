@@ -5,7 +5,7 @@ from wordcloud import WordCloud, STOPWORDS
 from os.path import dirname, join
 from os import environ
 from hazm import Normalizer, word_tokenize
-from tokenizer import Tokenizer
+import Tokenizer
 import re
 from sys import version
 
