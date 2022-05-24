@@ -5,6 +5,7 @@ from wordcloud import WordCloud, STOPWORDS
 from os.path import dirname, join
 from os import environ
 from hazm import Normalizer, word_tokenize
+from tokenizer import Tokenizer
 import re
 from sys import version
 
@@ -14,6 +15,7 @@ FILE = dirname(__file__)
 STOPWORDS.update(map(str.strip, open(join(FILE, 'stopwords'), encoding="utf8").readlines()))
 FONT_PATH = environ.get('FONT_PATH', join(FILE, 'Fonts', 'font.ttf'))
 normalize = Normalizer()
+tokenizer = Tokenizer()
 
 class WordCloudFa(WordCloud):
     """
@@ -147,8 +149,7 @@ class WordCloudFa(WordCloud):
         if self.regexp:
             words = re.findall(self.regexp, text, flags)
         else:
-            _words = word_tokenize(text)
-            words = normalize.token_spacing(_words)
+            words = tokenizer.get_tokens(text)
         if self.collocations:
             # We remove stopwords in the WordCloudFa, so there is no need for passing them in this function.
             word_counts = unigrams_and_bigrams(words, [], self.normalize_plurals, self.collocation_threshold)
