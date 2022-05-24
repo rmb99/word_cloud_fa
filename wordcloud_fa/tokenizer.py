@@ -12,7 +12,7 @@ class Tokenizer:
     def __init__(self):
         self.wordtokenizer = WordTokenizer()
         self.normalizer = Normalizer(token_based=True)
-        with open(source_reader('custom_tokens.txt'), 'r', encoding="utf-8") as txt_file:
+        with open(source_reader('wordcloud_fa/custom_tokens.txt'), 'r', encoding="utf-8") as txt_file:
             txt_reader = txt_file.read()
             frequency = 10
             tag = 'N'
